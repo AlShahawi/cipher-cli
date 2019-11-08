@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require 'vendor/autoload.php';
+
+use Cipher\CipherFactory;
+
+$caesarCipher = (new CipherFactory)->makeCaesarCipher();
+
+$stringsToEncrypt = ['A', 'Hello World', 'Always-Look-on-the-Bright-Side-of-Life'];
+
+foreach ($stringsToEncrypt as $string) {
+    echo sprintf("Encrypting %s, Result: %s\n", $string, $caesarCipher->encrypt($string));
+}

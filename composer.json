@@ -1,0 +1,17 @@
+{
+    "name": "alshahawi/cipher-cli",
+    "description": "A command-line tool for string encryption and decryption",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ahmed Al-Shahawi",
+            "email": "alshahawi@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cipher\\": "src/"
+        }
+    }
+}
