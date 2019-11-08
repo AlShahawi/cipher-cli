@@ -22,4 +22,13 @@ final class CaesarCipherTest extends TestCase
 
         $this->assertEquals('Khoor Zruog', $caesarCipher->encrypt('Hello World'));
     }
+
+    public function testItDecryptAGivenString(): void
+    {
+        $caesarCipher = new CaesarCipher([
+            'shift' => 3,
+        ]);
+
+        $this->assertEquals('Hello World', $caesarCipher->decrypt('Khoor Zruog'));
+    }
 }

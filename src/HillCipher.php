@@ -84,6 +84,23 @@ class HillCipher implements CipherStrategy
      */
     public function decrypt(string $string): string
     {
-        throw new Exception('Not implemented.');
+        $decrypted = '';
+
+        $characterChunks = array_chunk(explode(';', $string), $this->keyMatrix->getColumnsCount());
+
+        foreach ($characterChunks as $characterChunk) {
+            $vector = Matrix::fromFlatArray($characterChunk);
+            $multiplicationResult = $this->keyInverseMatrix->multiply($vector)->getColumnValues(0);
+
+            $bits = '';
+
+            foreach ($multiplicationResult as $bit) {
+                $bits .= $bit > 0 ? round($bit) : 0;
+            }
+
+            $decrypted .= chr(bindec($bits));
+        }
+
+        return $decrypted;
     }
 }

@@ -22,6 +22,16 @@ final class HillCipherTest extends TestCase
         );
     }
 
+    public function testItDecryptAGivenString(): void
+    {
+        $hillCipher = new HillCipher($this->getOptions());
+
+        $this->assertEquals(
+            'AB',
+            $hillCipher->decrypt('4;9;8;11;9;7;4;7;13;3;6;5;10;17;8;8;7;4;1;9;12;0;6;7;16;8;10;11;13;9;9;15')
+        );
+    }
+
     private function getOptions()
     {
         return [
