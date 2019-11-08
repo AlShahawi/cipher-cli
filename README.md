@@ -24,7 +24,7 @@ Encrypting Always-Look-on-the-Bright-Side-of-Life, Result: Dozdbv-Orrn-rq-wkh-Eu
 
 ## TODO
 1. (DONE) Implement Shift Encryption Algorithm (Caesar Cipher)
-2. Implement Matrix Encryption Algorithm (Hill Cipher)
+2. (DONE) Implement Matrix Encryption Algorithm (Hill Cipher)
 3. Write Unit Tests for both Shift and Matrix Algorithms
 4. Implement Decryption for both Shift and Matrix Algorithms
 5. Implement Command Line Tool

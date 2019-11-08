@@ -5,10 +5,18 @@ require 'vendor/autoload.php';
 
 use Cipher\CipherFactory;
 
-$caesarCipher = (new CipherFactory)->makeCaesarCipher();
+$cipherFactory = new CipherFactory;
+$caesarCipher = $cipherFactory->makeCaesarCipher();
+$hillCipher = $cipherFactory->makeHillCipher();
 
 $stringsToEncrypt = ['A', 'Hello World', 'Always-Look-on-the-Bright-Side-of-Life'];
 
+echo "Caesar Cipher\n";
 foreach ($stringsToEncrypt as $string) {
-    echo sprintf("Encrypting %s, Result: %s\n", $string, $caesarCipher->encrypt($string));
+    echo sprintf("Encrypting: %s,\nResult: %s\n\n", $string, $caesarCipher->encrypt($string));
+}
+
+echo "\n\n\nHill Cipher\n";
+foreach ($stringsToEncrypt as $string) {
+    echo sprintf("Encrypting: %s,\nResult: %s\n\n", $string, $hillCipher->encrypt($string));
 }

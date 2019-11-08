@@ -16,6 +16,17 @@ class CipherFactory
     }
 
     /**
+     * Create a hill cipher.
+     *
+     * @return HillCipher
+     * @throws \Exception
+     */
+    public function makeHillCipher(): CipherStrategy
+    {
+        return new HillCipher($this->loadConfiguration()['hill']);
+    }
+
+    /**
      * @return array
      */
     private function loadConfiguration(): array
