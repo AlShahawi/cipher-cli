@@ -37,25 +37,47 @@ class CipherCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Keep asking to encrypt/decrypt until the user exit.
+        while (true) {
+            $this->askForEncryptOrDecrypt($input, $output);
+        }
+    }
+
+    /**
+     * @param  InputInterface  $input
+     * @param  OutputInterface  $output
+     * @throws \Exception
+     */
+    private function askForEncryptOrDecrypt(InputInterface $input, OutputInterface $output): void
+    {
         $cipherFactory = new CipherFactory;
 
+        $helper = $this->getHelper('question');
+
         $stringQuestion = new Question("<question>Enter a string:</question>\n");
+        $stringQuestion->setValidator(function ($string) {
+            if (is_null($string)) {
+                throw new \RuntimeException(
+                    'The string to be encrypted/decrypted cannot be empty.'
+                );
+            }
+
+            return $string;
+        });
+        $string = $helper->ask($input, $output, $stringQuestion);
 
         $algorithmQuestion = new ChoiceQuestion(
             '<question>Please select algorithm:</question>',
             array_keys($cipherFactory->getCiphers()),
             0
         );
+        $algorithm = $helper->ask($input, $output, $algorithmQuestion);
 
         $methodQuestion = new ChoiceQuestion(
             '<question>Please select method:</question>',
             ['encrypt', 'decrypt'],
             0
         );
-
-        $helper = $this->getHelper('question');
-        $string = $helper->ask($input, $output, $stringQuestion);
-        $algorithm = $helper->ask($input, $output, $algorithmQuestion);
         $method = $helper->ask($input, $output, $methodQuestion);
 
         $cipher = $cipherFactory->makeCipher($algorithm);
