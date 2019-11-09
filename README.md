@@ -1,4 +1,4 @@
-Encryption & Decryption CLI Tool
+Cipher CLI Tool
 ==
 The goal of this project is to implement encryption and decryption algorithms for strings.
 
@@ -22,5 +22,5 @@ The tool will ask you for a string, algorithm and the method to encrypt or decry
 3. (DONE) Write Unit Tests for both Shift and Matrix Algorithms
 4. (DONE) Implement Decryption for both Shift and Matrix Algorithms
 5. (DONE) Implement Command Line Tool
-6. Add Integration for Reverse Encrpyion Algorithm
-7. Add Reverse Encrpyion Algorithm for CLI Tool
+6. (DONE) Add Integration for Reverse Encrpyion Algorithm
+7. (DONE) Add Reverse Encrpyion Algorithm for CLI Tool

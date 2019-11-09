@@ -12,6 +12,7 @@ class CipherFactory
     protected $ciphers = [
         'caesar' => CaesarCipher::class,
         'hill' => HillCipher::class,
+        'reverse' => ReverseCipher::class,
     ];
 
     /**

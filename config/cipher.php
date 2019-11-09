@@ -59,4 +59,7 @@ return [
          */
         'bit_separator' => ';',
     ],
+    'reverse' => [
+        'base_uri' => 'http://backendtask.robustastudio.com/',
+    ],
 ];
