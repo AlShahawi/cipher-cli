@@ -20,6 +20,7 @@ final class CaesarCipherTest extends TestCase
             'shift' => 3,
         ]);
 
+        $this->assertEquals('Crr', $caesarCipher->encrypt('Zoo'));
         $this->assertEquals('Khoor Zruog', $caesarCipher->encrypt('Hello World'));
     }
 
@@ -30,5 +31,15 @@ final class CaesarCipherTest extends TestCase
         ]);
 
         $this->assertEquals('Hello World', $caesarCipher->decrypt('Khoor Zruog'));
+        $this->assertEquals('Zoo', $caesarCipher->decrypt('Crr'));
+
+        $caesarCipher = new CaesarCipher([
+            'shift' => 5,
+        ]);
+
+        $this->assertEquals(
+            'Always-Look-on-the-Bright-Side-of-Life',
+            $caesarCipher->decrypt('Fqbfdx-Qttp-ts-ymj-Gwnlmy-Xnij-tk-Qnkj')
+        );
     }
 }

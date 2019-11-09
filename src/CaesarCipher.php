@@ -77,12 +77,17 @@ class CaesarCipher implements CipherStrategy
                 continue;
             }
 
-            // shift the character based on the direction.
-            $shiftedChar = $direction == 'right'
-                ? ord($char) + $this->shift
-                : ord($char) - $this->shift;
+            $shift = $this->shift;
 
-            $result .= chr(($shiftedChar - $startFrom) % 26 + $startFrom);
+            $alphabticalOrder = ord($char) - $startFrom;
+
+            $shiftedAlphabticalOrder = $alphabticalOrder + ($direction == 'right' ? $shift : -$shift);
+
+            $shiftedAlphabticalOrder = $shiftedAlphabticalOrder < 0
+                ? 26 + $shiftedAlphabticalOrder
+                : $shiftedAlphabticalOrder % 26;
+
+            $result .= chr($shiftedAlphabticalOrder + $startFrom);
         }
 
         return $result;
