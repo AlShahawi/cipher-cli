@@ -3,20 +3,11 @@
 
 require 'vendor/autoload.php';
 
-use Cipher\CipherFactory;
+use Cipher\Console\CipherCommand;
+use Symfony\Component\Console\Application;
 
-$cipherFactory = new CipherFactory;
-$caesarCipher = $cipherFactory->makeCaesarCipher();
-$hillCipher = $cipherFactory->makeHillCipher();
-
-$stringsToEncrypt = ['A', 'Hello World', 'Always-Look-on-the-Bright-Side-of-Life'];
-
-echo "Caesar Cipher\n";
-foreach ($stringsToEncrypt as $string) {
-    echo sprintf("Encrypting: %s,\nResult: %s\n\n", $string, $caesarCipher->encrypt($string));
-}
-
-echo "\n\n\nHill Cipher\n";
-foreach ($stringsToEncrypt as $string) {
-    echo sprintf("Encrypting: %s,\nResult: %s\n\n", $string, $hillCipher->encrypt($string));
-}
+(new Application('Cipher CLI Tool'))
+    ->add($command = new CipherCommand)
+    ->getApplication()
+    ->setDefaultCommand($command->getName(), true)
+    ->run();

@@ -5,25 +5,42 @@ namespace Cipher;
 class CipherFactory
 {
     /**
+     * The available ciphers.
+     *
+     * @var array
+     */
+    protected $ciphers = [
+        'caesar' => CaesarCipher::class,
+        'hill' => HillCipher::class,
+    ];
+
+    /**
      * Create a caesar cipher.
      *
      * @return CaesarCipher
      * @throws \Exception
      */
-    public function makeCaesarCipher(): CipherStrategy
+    public function makeCipher($cipher): CipherStrategy
     {
-        return new CaesarCipher($this->loadConfiguration()['caesar']);
+        $supportedCiphers = $this->getCiphers();
+
+        if (! array_key_exists($cipher, $supportedCiphers)) {
+            throw new \Exception('There is no supported chipper called '.$cipher);
+        }
+
+        $cipherAlgorithm = $supportedCiphers[$cipher];
+
+        return new $cipherAlgorithm($this->loadConfiguration()[$cipher]);
     }
 
     /**
-     * Create a hill cipher.
+     * Get the available ciphers.
      *
-     * @return HillCipher
-     * @throws \Exception
+     * @return array
      */
-    public function makeHillCipher(): CipherStrategy
+    public function getCiphers(): array
     {
-        return new HillCipher($this->loadConfiguration()['hill']);
+        return $this->ciphers;
     }
 
     /**
