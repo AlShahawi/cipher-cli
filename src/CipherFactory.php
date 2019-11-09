@@ -26,7 +26,7 @@ class CipherFactory
         $supportedCiphers = $this->getCiphers();
 
         if (! array_key_exists($cipher, $supportedCiphers)) {
-            throw new \Exception('There is no supported chipper called '.$cipher);
+            throw new \Exception('There is no supported cipher called '.$cipher);
         }
 
         $cipherAlgorithm = $supportedCiphers[$cipher];
